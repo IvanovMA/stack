@@ -25,7 +25,7 @@ T* copy_mas(const T *p1, size_t c, size_t s)
 	T *p2 = new T[s];
 	try
 	{ 
-		copy(p1, p1 + c, p2); 
+		std::copy(p1, p1 + c, p2); 
 	}
 	catch (...)
 	{ 
