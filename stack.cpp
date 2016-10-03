@@ -9,7 +9,7 @@ public:
 	~stack();                       /* noexcept */
 	size_t count() const;           /* noexcept */
 	void push(T const &);           /* strong */
-	const T& top();          		/* strong */
+	const T& top() const;          		/* strong */
 	void pop();                     /* strong */
 	stack& operator=(const stack&); /* strong */
 	bool empty();					/* noexcept */
@@ -68,7 +68,7 @@ void stack<T>::push(T const &a)
 }
 
 template <typename T>
-const T& stack<T>::top()
+const T& stack<T>::top() const
 {
 	if (count_ > 0) return array_[count_ -1];
 	else throw("Stack is empty");
