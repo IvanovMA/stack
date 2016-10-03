@@ -9,10 +9,10 @@ public:
 	~stack();                       /* noexcept */
 	size_t count() const;           /* noexcept */
 	void push(T const &);           /* strong */
-	T& top(const stack&);          
-	void pop();                     
+	const T& top();          		/* strong */
+	void pop();                     /* strong */
 	stack& operator=(const stack&); /* strong */
-	bool empty();			/* noexcept */
+	bool empty();					/* noexcept */
 private:
 	T * array_;
 	size_t array_size_;
@@ -68,19 +68,18 @@ void stack<T>::push(T const &a)
 }
 
 template <typename T>
-T& stack<T>::top(const stack<T>& x) noexcept
+const T& stack<T>::top()
 {
-    return  x.array_[x.count];
+	if (count_ > 0) return array_[count_ -1];
+	else throw("Stack is empty");
 }
 
 template <typename T>
 void stack<T>::pop()
 {
-    if (count_ == 0) throw("stack is empty");
-	else {
-		array_[count_]=0;
-        count_--;
-	}
+	if (count_> 0) 
+		--count_;
+	else throw ("Stack is empty");
 }
 
 }
