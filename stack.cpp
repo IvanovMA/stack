@@ -82,8 +82,6 @@ void stack<T>::pop()
 	else throw ("Stack is empty");
 }
 
-}
-
 template<typename T>
 stack<T>& stack<T>::operator=(const stack& b){
 	if (this != &b){
