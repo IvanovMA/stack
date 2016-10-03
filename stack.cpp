@@ -36,19 +36,19 @@ T* copy_mas(const T *p1, size_t c, size_t s)
 }
 
 template <typename T>
-stack<T>::stack() noexcept : array_(nullptr), array_size_(0), count_(0){};
+stack<T>::stack() : array_(nullptr), array_size_(0), count_(0){};
 
 template <typename T>
 stack<T>::stack(const stack& x) : array_size_(x.array_size_), count_(x.count_), array_ (copy_mas(x.array_, x.count_, x.array_size_)){};
 
 template <typename T>
-stack<T>::~stack() noexcept
+stack<T>::~stack() 
 {
 	delete[] array_;
 }
 
 template <typename T>
-size_t stack<T>::count() noexcept const 
+size_t stack<T>::count()const 
 {
 	return count_;
 }
