@@ -18,6 +18,22 @@ private:
 	size_t count_;
 }; 
 
+template<typename T>
+T* copy_mas(const T *p1, size_t c, size_t s)
+{
+	T *p2 = new T[s];
+	try
+	{ 
+		copy(p1, p1 + c, p2); 
+	}
+	catch (...)
+	{ 
+		delete[] p2; 
+		throw; 
+	}
+	return p2;
+}
+
 template <typename T>
 stack<T>::stack() noexcept : array_(nullptr), array_size_(0), count_(0){};
 
@@ -41,23 +57,17 @@ size_t stack<T>::count() noexcept const
 }
 
 template <typename T>
-void stack<T>::push(const T &a)
-if (array_==nullptr)
-{ 
-	array_ = new T[1]; array_[0] = a;
-	count_++; array_size_++;  
+void stack<T>::push(T const &a)
+{
+	if (count_ == array_size_)
+	{
+		T *p = copy_mas(array_, count_, array_size_*2 + (count_ == 0));
+		delete [] array_;
+		array_=p;
+		array_size_ =array_size_*2+(count_==0);
 	}
-	else{
-		if (count_ == array_size_){
-		T *p = array_;
-		array_ = new T[array_size_ * 2];
-		for (int i = 0; i < count_; i++) array_[i] = p[i];
-		delete[]p;
-		array_size_ *= 2;
-		}
 	array_[count_] = a;
-	count_++;
-	}
+	++count_;
 }
 
 template <typename T>
@@ -81,11 +91,11 @@ void stack<T>::pop()
 template<typename T>
 stack<T>& stack<T>::operator=(const stack& b){
 	if (this != &b){
-		delete[] array_;
+		T *p = array_;
+		array_ = copy_mas(b.array_, b.count_, b.array_size_);
+		delete[] p;
 		count_ = b.count_;
 		array_size_ = b.array_size_;
-		array_ = new T[count];
-		for (int i = 0; i < count_; i++) array_[i] = b.array_[i];
-		return *this;
 	}
+	return *this;
 }
