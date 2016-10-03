@@ -38,7 +38,7 @@ template <typename T>
 stack<T>::stack() noexcept : array_(nullptr), array_size_(0), count_(0){};
 
 template <typename T>
-stack<T>::stack(const stack<T>& x) noexcept : array_size_(x.array_size_), count_(x.count_), array_ (copy_mas(x.array_, x.count_, x.array_size_)){};
+stack<T>::stack(const stack& x) : array_size_(x.array_size_), count_(x.count_), array_ (copy_mas(x.array_, x.count_, x.array_size_)){};
 
 template <typename T>
 stack<T>::~stack() noexcept
