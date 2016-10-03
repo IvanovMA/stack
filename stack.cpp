@@ -4,14 +4,15 @@ template <typename T>
 class stack
 {
 public: 
-	stack();                        //noexc
-	stack(const stack&);            //noexc
-	~stack();                       //noexc
-	size_t count() const;           //noexc
-	void push(T const &);           
-	T& top(const stack&);           //noexc
-	void pop();                     //+
-	stack& operator=(const stack&); //+
+	stack();                        /* noexcept */
+	stack(const stack&);            /* strong */
+	~stack();                       /* noexcept */
+	size_t count() const;           /* noexcept */
+	void push(T const &);           /* strong */
+	T& top(const stack&);          
+	void pop();                     
+	stack& operator=(const stack&); /* strong */
+	bool empty();			/* noexcept */
 private:
 	T * array_;
 	size_t array_size_;
@@ -95,3 +96,9 @@ stack<T>& stack<T>::operator=(const stack& b){
 	}
 	return *this;
 }
+
+template<typename T>
+bool stack<T>::empty()
+{ 
+	return(count_ == 0); 
+} 
