@@ -12,7 +12,7 @@ public:
 	const T& top() const;          		/* strong */
 	void pop();                     /* strong */
 	stack& operator=(const stack&); /* strong */
-	bool empty();					/* noexcept */
+	bool empty() const;					/* noexcept */
 private:
 	T * array_;
 	size_t array_size_;
@@ -95,7 +95,7 @@ stack<T>& stack<T>::operator=(const stack& b){
 }
 
 template<typename T>
-bool stack<T>::empty()
+bool stack<T>::empty() const
 { 
 	return(count_ == 0); 
 } 
