@@ -33,7 +33,7 @@ protected:
     T * ptr_;
     size_t size_;
     size_t count_;
-}
+};
 
 
 template <typename T>
@@ -58,8 +58,7 @@ public:
 	~stack();                       /* noexcept */
 	size_t count() const;           /* noexcept */
 	void push(T const &);           /* strong */
-	const T& top() const;          		/* strong */
-	void pop();                     /* strong */
+	const T& top() const;          		/* strong */	void pop();                     /* strong */
 	stack& operator=(const stack&); /* strong */
 	auto empty() const;					/* noexcept */
 private:
@@ -85,7 +84,7 @@ T* copy_mas(const T *p1, size_t c, size_t s)
 }
 
 template <typename T>
-stack<T>::stack() :allocator<T>(size){};
+stack<T>::stack(size_t size = 0) :allocator<T>(size){};
 
 template <typename T>
 stack<T>::stack(const stack& x) :allocator<T>(x.size_){
