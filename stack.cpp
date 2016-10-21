@@ -58,10 +58,11 @@ void stack<T>::push(T const &a)
 {
 	if (count_ == array_size_)
 	{
-		T *p = copy_mas(array_, count_, array_size_*2 + (count_ == 0));
+		newarray_size_=array_size_*2 + (count_==0);
+		T *p = copy_mas(array_, count_,newarray_size_);
 		delete [] array_;
 		array_=p;
-		array_size_ =array_size_*2+(count_==0);
+		array_size_ =newarray_size_;
 	}
 	array_[count_] = a;
 	++count_;
