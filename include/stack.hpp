@@ -58,7 +58,7 @@ void stack<T>::push(T const &a)
 {
 	if (count_ == array_size_)
 	{
-		newarray_size_=array_size_*2 + (count_==0);
+		size_t newarray_size_=array_size_*2 + (count_==0);
 		T *p = copy_mas(array_, count_,newarray_size_);
 		delete [] array_;
 		array_=p;
