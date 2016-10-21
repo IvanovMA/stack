@@ -35,7 +35,6 @@ protected:
     size_t count_;
 };
 
-
 template <typename T>
 allocator<T>::allocator(size_t size) : ptr_((T*)(operator new(size*sizeof(T)))), size_(size), count_(0){}
 
@@ -126,7 +125,6 @@ const T& stack<T>::top() const
 	return allocator<T>::ptr_[allocator<T>::count_ - 1];
 }
 
-
 template <typename T>
 void stack<T>::pop()
 {
@@ -138,7 +136,7 @@ void stack<T>::pop()
 }
 
 template<typename T>
-stack<T>& stack<T>::operator=(const stack& right) -> stack & 
+auto stack<T>::operator=(stack const & right) -> stack & 
 {
 	if (this != &right) {
 	stack<T> temp (right.size_);
@@ -159,4 +157,3 @@ auto stack<T>::empty() const -> bool{
 		return false;
 	}
 }
-
