@@ -58,8 +58,9 @@ public:
 	~stack();                       /* noexcept */
 	size_t count() const;           /* noexcept */
 	void push(T const &);           /* strong */
-	const T& top() const;          		/* strong */	void pop();                     /* strong */
-	stack& operator=(const stack&); /* strong */
+	const T& top() const;          		/* strong */	
+	void pop();                     /* strong */
+	auto operator=(stack const & right)->stack &; /* strong */
 	auto empty() const;					/* noexcept */
 private:
 	T * array_;
