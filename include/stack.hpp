@@ -84,12 +84,13 @@ T* copy_mas(const T *p1, size_t c, size_t s)
 }
 
 template <typename T>
-stack<T>::stack(size_t size = 0) :allocator<T>(size){};
+stack<T>::stack(size_t size) :allocator<T>(size){};
 
 template <typename T>
 stack<T>::stack(const stack& x) :allocator<T>(x.size_){
 	for (size_t i = 0; i < x.count_; i++) construct(allocator<T>::ptr_ + i, x.ptr_[i]);
 	allocator<T>::count_ = x.count_;
+}
 
 template <typename T>
 stack<T>::~stack() 
