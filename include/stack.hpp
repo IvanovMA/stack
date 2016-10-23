@@ -60,7 +60,7 @@ public:
 	const T& top() const;          		/* strong */	
 	void pop();                     /* strong */
 	auto operator=(stack const & right)->stack &; /* strong */
-	auto empty() const;					/* noexcept */
+	bool empty() const;					/* noexcept */
 private:
 	T * array_;
 	size_t array_size_;
@@ -150,7 +150,7 @@ auto stack<T>::operator=(stack const & right) -> stack &
 }
 
 template<typename T>
-auto stack<T>::empty() const -> bool{
+bool stack<T>::empty() const{
 	if (allocator<T>::count_ == 0){
 		return true;
 	} else{
