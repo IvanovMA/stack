@@ -22,7 +22,7 @@ void destroy(FwdIter first, FwdIter last) noexcept
 template <typename T>
 class allocator
 {
-private:
+public:
     allocator(size_t size = 0);
     ~allocator();
     auto swap(allocator & other) -> void;
