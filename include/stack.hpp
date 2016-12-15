@@ -79,7 +79,7 @@ stack<T>::stack(const stack& x) :allocator<T>(x.size_){
 template <typename T>
 stack<T>::~stack() 
 {
-	destroy(allocator<T>::ptr_, allocator<T>::ptr_ + allocator<T>::count_);};
+	destroy(allocator<T>::ptr_, allocator<T>::ptr_ + allocator<T>::count_);
 }
 
 template <typename T>
