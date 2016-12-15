@@ -42,7 +42,7 @@ allocator<T>::allocator(size_t size) : ptr_((T*)(operator new(size*sizeof(T)))),
 template<typename T>
 allocator<T>::~allocator()
 {
-	destroy(&*ptr_, &*(ptr_+size_));
+	operator delete(ptr_);
 }
 
 template<typename T>
@@ -79,7 +79,7 @@ stack<T>::stack(const stack& x) :allocator<T>(x.size_){
 template <typename T>
 stack<T>::~stack() 
 {
-	destroy(this);
+	destroy(allocator<T>::ptr_, allocator<T>::ptr_ + allocator<T>::count_);};
 }
 
 template <typename T>
