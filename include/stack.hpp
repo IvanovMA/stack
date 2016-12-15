@@ -41,7 +41,7 @@ allocator<T>::allocator(size_t size) : ptr_((T*)(operator new(size*sizeof(T)))),
 template<typename T>
 allocator<T>::~allocator()
 {
-	destroy(*ptr_, *(ptr_+size_));
+	destroy(&ptr_, &(ptr_+size_));
 }
 
 template<typename T>
